@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TicketSnippets Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo-badge">
+        <div class="icon-box">⚡</div>
+        <h1>Plantillas de Soporte</h1>
+      </div>
+      <div class="count-tag" id="countBadge">0 notas</div>
+    </header>
+
+    <!-- Panel de creación y edición expandido -->
+    <div class="editor-card" id="editorPanel">
+      <div class="editor-status-bar">
+        <span>✏️ Editando plantilla existente</span>
+      </div>
+      <input type="text" id="titleInput" class="input-title" placeholder="Título de la plantilla..." autocomplete="off" />
+      <textarea id="bodyInput" class="input-body" placeholder="Texto que se copiará al portapapeles..."></textarea>
+      <div class="editor-actions">
+        <button class="btn-cancel" id="btnCancel" onclick="cancelEditing()">Cancelar</button>
+        <button class="btn-save" id="btnSave" onclick="saveSnippet()">Guardar Nota</button>
+      </div>
+    </div>
+
+    <!-- Buscador -->
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar por título o contenido..." oninput="renderSnippets()" />
+      <span class="search-shortcut">Ctrl+K</span>
+    </div>
+
+    <!-- Listado -->
+    <div class="grid" id="snippetsContainer"></div>
+  </div>
+
+  <!-- Modal de confirmación para eliminación -->
+  <div class="modal-backdrop" id="deleteModal">
+    <div class="modal-box">
+      <div class="modal-title">¿Eliminar esta plantilla?</div>
+      <div class="modal-desc" id="deleteModalDesc">Esta acción no se puede deshacer.</div>
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeDeleteModal()">Cancelar</button>
+        <button class="btn-modal-confirm" onclick="confirmDelete()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificación Toast -->
+  <div id="toast">
+    <div class="toast-dot"></div>
+    <span id="toastMsg">¡Copiado al portapapeles!</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
